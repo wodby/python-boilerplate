@@ -1,0 +1,27 @@
+version: 0.1
+
+workflows:
+  main:
+    jobs:
+      - build
+
+jobs:
+  build:
+    steps:
+      - clone
+
+      - cache_restore:
+          path: ~/.cache/uv
+          key: 'uv-{{ hash "uv.lock" }}-v1'
+
+      - run: wget -qO- https://api.wodby.com/v1/get/cli | sh
+      - run: wodby ci init $WODBY_BUILD_ID
+      - run: wodby ci run -v $HOME/.cache/uv:/home/wodby/.cache/uv -s python -- uv sync
+
+      - cache_save:
+          key: 'uv-{{ hash "uv.lock" }}-v1'
+          path: ~/.cache/uv
+
+      - run: wodby ci build
+      - run: wodby ci release
+      - run: wodby ci deploy
