@@ -1,10 +1,14 @@
-FROM wodby/python:dev
+ARG WODBY_BASE_IMAGE
+FROM ${WODBY_BASE_IMAGE}
 
-ENV UV_COMPILE_BYTECODE=1
-ENV UV_NO_CACHE=1
+ENV UV_COMPILE_BYTECODE=1 \
+    UV_NO_CACHE=1 \
+    PATH="/usr/src/app/.venv/bin:${PATH}" \
+    GUNICORN_APP="python_boilerplate.main:app"
 
-COPY --chown=wodby:wodby pyproject.toml uv.lock /usr/src/app/
-COPY --chown=wodby:wodby src /usr/src/app/src
-RUN uv sync
+ARG COPY_FROM
+COPY --chown=wodby:wodby ${COPY_FROM}/pyproject.toml ${COPY_FROM}/uv.lock /usr/src/app/
+RUN uv sync --frozen --no-dev --no-install-project
 
-CMD ["uv", "run", "python", "src/python_boilerplate/main.py"]
+COPY --chown=wodby:wodby ${COPY_FROM} /usr/src/app
+RUN uv sync --frozen --no-dev
