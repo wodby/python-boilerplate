@@ -1,7 +1,9 @@
 version: 0.1
 
 jobs:
-  python-app-check:
+  python-http-check:
     steps:
     - run: |
-        python -c 'from python_boilerplate.main import app; print("application loaded")'
+        curl --fail --show-error --silent --retry 5 --retry-all-errors --retry-delay 2 \
+          --retry-connrefused \
+          "http://${WODBY_APP_SERVICE_NAME}:8080/healthz"

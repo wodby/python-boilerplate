@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A framework-free Python WSGI app running on Wodby.">
+    <title>Python on Wodby</title>
+    <link rel="stylesheet" href="/assets/styles.css">
+  </head>
+  <body>
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <p class="status"><span aria-hidden="true"></span> Deployment healthy</p>
+        <p class="kicker">Python + WSGI + Wodby</p>
+        <h1 id="page-title">Your Python app is running.</h1>
+        <p class="intro">
+          A framework-free starting point with packaged resources, explicit
+          HTTP responses, protocol-level tests, and Gunicorn production serving.
+        </p>
+        <div class="actions">
+          <a class="primary" href="https://docs.python.org/3/">Build with Python</a>
+          <a href="https://wodby.com/docs/2.0/">Explore Wodby</a>
+        </div>
+      </section>
+
+      <section class="details" aria-labelledby="details-title">
+        <div>
+          <p class="number">01</p>
+          <h2 id="details-title">Runtime</h2>
+        </div>
+        <dl>
+          <div>
+            <dt>Python</dt>
+            <dd>{python_version}</dd>
+          </div>
+          <div>
+            <dt>Interface</dt>
+            <dd>WSGI 1.0.1</dd>
+          </div>
+          <div>
+            <dt>API example</dt>
+            <dd><a href="/api/status">/api/status</a></dd>
+          </div>
+        </dl>
+      </section>
+    </main>
+
+    <footer>
+      <span>Zero framework dependencies</span>
+      <a href="/healthz">Health check</a>
+    </footer>
+  </body>
+</html>

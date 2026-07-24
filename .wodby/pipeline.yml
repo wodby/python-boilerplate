@@ -10,6 +10,9 @@ jobs:
     steps:
       - clone
       - run: wodby ci init $WODBY_BUILD_ID
+      - run: wodby ci run -- uv run --frozen ruff check .
+      - run: wodby ci run -- uv run --frozen ruff format --check .
+      - run: wodby ci run -- uv run --frozen pytest
       - run: wodby ci build python -f Dockerfile
       - run: wodby ci release
       - run: wodby ci deploy

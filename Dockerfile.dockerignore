@@ -1,6 +1,10 @@
 .git
 .idea
+.wodby
 .venv
 **/__pycache__
 .pytest_cache
 .ruff_cache
+Makefile
+README.md
+tests

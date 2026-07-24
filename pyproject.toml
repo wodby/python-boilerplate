@@ -12,8 +12,8 @@ Repository = "https://github.com/wodby/python-boilerplate"
 
 [dependency-groups]
 dev = [
-    "ruff",
-    "pytest",
+    "pytest>=8,<10",
+    "ruff>=0.12,<1",
 ]
 
 [build-system]
