@@ -1,5 +1,5 @@
+from collections.abc import Callable, Iterable
 from http import HTTPStatus
-from typing import Callable, Iterable
 
 StartResponse = Callable[[str, list[tuple[str, str]]], None]
 
